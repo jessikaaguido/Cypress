@@ -12,7 +12,7 @@ describe('Teste do Site SeuBarriga', () => {
     cy.contains('Listar').click();
 
     cy.get('[id="tabelaContas"]').should('to.have.length',2);
-    cy.contains('jessika correa').should('to.have.length',1);
+    cy.contains('teste').should('to.have.length',1);
 
 
 
