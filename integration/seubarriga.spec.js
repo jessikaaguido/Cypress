@@ -1,27 +1,32 @@
 describe('Teste do Site SeuBarriga', () => {
+
     it('Visita a pagina de novo cadastro', () => {
-      cy.visit('https://seubarriga.wcaquino.me/cadastro');
+        cy.visit('https://seubarriga.wcaquino.me/cadastro');
+
+        
+        cy.contains('Login').should('be.visible');
     })
 
-    it('Criando novo usuario', () => {       
+    it('Criando novo usuario', () => {      
 
         cy.get('[id=nome]').type('Yasmin de souza');
         cy.get('[id=email]').type('yasmin_teste@gmail.com');
         cy.get('[id=senha]').type('123456'); 
-        cy.get('[value="Cadastrar"]').click();      
+        cy.get('[value="Cadastrar"]').click(); 
+
+
+        cy.wrap({ alert: 'Endereço de email já utilizado'}).its('alert').should('eq', 'Endereço de email já utilizado');  
 
     })  
  
-    it('Visita a pagina de login', () => {
-         cy.visit('https://seubarriga.wcaquino.me/login');
-    })
-
     it('Inserindo login de usuario', () => {
 
+        cy.visit('https://seubarriga.wcaquino.me/login');
         cy.get('[id=email]').type('yasmin_teste@gmail.com');
         cy.get('[id=senha]').type('123456');    
         cy.get('.btn').click();    
         
+
         cy.wrap({ alert: 'Bem vindo, Yasmin de souza!'}).its('alert').should('eq', 'Bem vindo, Yasmin de souza!');
   
         
